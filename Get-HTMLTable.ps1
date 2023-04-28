@@ -29,11 +29,15 @@ foreach($line in $website){
         $temp[$i]=$line
     }
 }
-
 Out-File $OUTPUT
 for($k=0; $k -le $scrape.Count; $k++){
-    foreach($line in $scrape[$k].Values){
-        $line | Out-File $OUTPUT -Append
-    }
+    #foreach($line in $scrape[$k].Values){
+    #    $line | Out-File $OUTPUT -Append
+    #}
     #$scrape[$k].Values | Out-File $OUTPUT -Append
+    for($x=0;$x -le $scrape[$k].Values.Count; $x++){
+        if($scrape[$k] -ne $null) { 
+            $scrape[$k][$x] | Out-File $OUTPUT -Append
+        }
+    }#$x++
 }
